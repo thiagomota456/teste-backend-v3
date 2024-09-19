@@ -28,7 +28,6 @@ namespace TheatricalPlayersRefactoringKata.Services
             statement.TheaterCompany = invoice.Customer;
 
             var totalAmount = 0;
-            var volumeCredits = 0;
 
             statement.Lines = new();
 
@@ -37,40 +36,65 @@ namespace TheatricalPlayersRefactoringKata.Services
                 var play = plays[perf.PlayId];
                 var lines = Math.Clamp(play.Lines, MIN_LINES, MAX_LINES);
                 var thisAmount = lines * BASE_VALUE_DIVISOR;
-
-                volumeCredits += Math.Max(perf.Audience - AUDIENCE_CREDIT_THRESHOLD, 0);
+                var credits = EarnedCredits(perf, play);
+                statement.Credits += credits;
 
                 switch (play.Type)
                 {
                     case PlayType.Tragedy:
-                        if(perf.Audience > TRAGEDY_AUDIENCE_THRESHOLD)
-                        {
-                            thisAmount += 1000 * (perf.Audience - TRAGEDY_AUDIENCE_THRESHOLD);
-                        }
-                    break;
+                        thisAmount = TragedyCalculation(perf, thisAmount);
+                        break;
 
                     case PlayType.Comedy:
-                        if(perf.Audience > COMEDY_AUDIENCE_THRESHOLD)
-                        {
-                            thisAmount += 10000 + 500 * (perf.Audience - COMEDY_AUDIENCE_THRESHOLD);
-                        }
-                        thisAmount += 300 * perf.Audience;
-                        volumeCredits += (int)Math.Floor((decimal)perf.Audience / COMEDY_BONUS_DIVISOR);
-                    break;
+                        thisAmount = ComedyCalculation(perf, thisAmount);
+                        break;
 
+                    case PlayType.Historical:
+                        thisAmount = ComedyCalculation(perf, thisAmount) + TragedyCalculation(perf, thisAmount);
+                        break;
                     default:
                         throw new Exception("unknown type: " + play.Type.ToString());
 
                 }
 
-                statement.Lines.Add(new Line(play.Name, thisAmount / 100, perf.Audience));
+                statement.Lines.Add(new Line(play.Name, ((decimal)thisAmount / 100), perf.Audience, credits));
                 totalAmount += thisAmount;
             }
 
-            statement.Amount = Convert.ToDecimal(totalAmount / 100);
-            statement.Credits = volumeCredits;
-
+            statement.Amount = Convert.ToDecimal((decimal)totalAmount / 100);
             return statement;
+        }
+
+        private static int ComedyCalculation(Performance perf, int thisAmount)
+        {
+            if (perf.Audience > COMEDY_AUDIENCE_THRESHOLD)
+            {
+                thisAmount += 10000 + 500 * (perf.Audience - COMEDY_AUDIENCE_THRESHOLD);
+            }
+            thisAmount += 300 * perf.Audience;
+            return thisAmount;
+        }
+
+        private static int TragedyCalculation(Performance perf, int thisAmount)
+        {
+            if (perf.Audience > TRAGEDY_AUDIENCE_THRESHOLD)
+            {
+                thisAmount += 1000 * (perf.Audience - TRAGEDY_AUDIENCE_THRESHOLD);
+            }
+
+            return thisAmount;
+        }
+
+        private static int EarnedCredits(Performance perf, Play play)
+        {
+            int credits = Math.Max(perf.Audience - AUDIENCE_CREDIT_THRESHOLD, 0);
+
+            if (play.Type == PlayType.Comedy)
+            {
+                credits += (int)Math.Floor((decimal)perf.Audience / COMEDY_BONUS_DIVISOR);
+            }
+
+            return credits;
         }
     }
 }

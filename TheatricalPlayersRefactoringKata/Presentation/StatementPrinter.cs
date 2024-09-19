@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Globalization;
+using System.Linq;
+using System.Xml.Linq;
 using TheatricalPlayersRefactoringKata.Domain;
 using TheatricalPlayersRefactoringKata.Services;
 
@@ -35,7 +37,7 @@ public class StatementPrinter
             case PrintType.TXT:
                 return PrintTxt(result);
             case PrintType.XML:
-                throw new Exception("Not Implemeted");
+                return PrintXml(result);
             default:
                 throw new Exception("Not Implemeted");
         }
@@ -53,5 +55,24 @@ public class StatementPrinter
         stringTxt += $"You earned {statement.Credits} credits\n";
 
         return stringTxt;
+    }
+
+    internal string PrintXml(Statement statement) {
+        XElement statementXml = new XElement("Statement",
+            new XElement("Customer", statement.TheaterCompany),
+            new XElement("Items",
+                statement.Lines.Select(line =>
+                    new XElement("Item",
+                        new XElement("AmountOwed", line.Value),
+                        new XElement("EarnedCredits", line),
+                        new XElement("Seats", line.Seats)
+                    )
+                )
+            ),
+            new XElement("AmountOwed", statement.Amount),
+            new XElement("EarnedCredits", statement.Credits)
+        );
+
+        return statementXml.ToString();
     }
 }
