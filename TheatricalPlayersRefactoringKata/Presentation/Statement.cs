@@ -10,10 +10,13 @@ namespace TheatricalPlayersRefactoringKata.Presentation
     {
         public Statement(string theaterCompany)
         {
-            TheaterCompany = theaterCompany;
+            this.TheaterCompany = theaterCompany;
+            this.Lines = new List<Line>();
         }
 
-        public Statement() { }
+        public Statement() {
+            this.Lines = new List<Line>();
+        }
 
 
         public string TheaterCompany { get; set; }

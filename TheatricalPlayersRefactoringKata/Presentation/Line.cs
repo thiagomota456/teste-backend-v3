@@ -14,6 +14,10 @@ namespace TheatricalPlayersRefactoringKata.Presentation
         public int Seats;
         public int EarnedCredits;
 
+        public Line()
+        {
+
+        }
         public Line(string name, decimal value, int seats, int earnedCredits)
         {
             Name = name;

@@ -20,4 +20,10 @@
     <ProjectReference Include="..\TheatricalPlayersRefactoringKata\TheatricalPlayersRefactoringKata.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <None Update="respostas\BigCo.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
 </Project>

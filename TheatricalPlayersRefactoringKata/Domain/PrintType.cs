@@ -9,6 +9,7 @@ namespace TheatricalPlayersRefactoringKata.Domain
     public enum PrintType
     {
         TXT,
-        XML
+        XML,
+        JSON
     }
 }

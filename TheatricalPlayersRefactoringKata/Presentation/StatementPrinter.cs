@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Globalization;
@@ -38,6 +39,8 @@ public class StatementPrinter
                 return PrintTxt(result);
             case PrintType.XML:
                 return PrintXml(result);
+            case PrintType.JSON:
+                return PrintJson(result);
             default:
                 throw new Exception("Not Implemeted");
         }
@@ -64,7 +67,7 @@ public class StatementPrinter
                 statement.Lines.Select(line =>
                     new XElement("Item",
                         new XElement("AmountOwed", line.Value),
-                        new XElement("EarnedCredits", line),
+                        new XElement("EarnedCredits", line.EarnedCredits),
                         new XElement("Seats", line.Seats)
                     )
                 )
@@ -74,5 +77,10 @@ public class StatementPrinter
         );
 
         return statementXml.ToString();
+    }
+
+    public string PrintJson(Statement statement)
+    {
+        return JsonConvert.SerializeObject(statement, Formatting.Indented);
     }
 }

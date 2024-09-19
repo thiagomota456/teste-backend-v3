@@ -1,6 +1,9 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 using TheatricalPlayersRefactoringKata.Domain;
@@ -8,6 +11,7 @@ using TheatricalPlayersRefactoringKata.Presentation;
 
 namespace TheatricalPlayersRefactoringKata.Services
 {
+    
     public class BillingService
     {
         private const int MIN_LINES = 1000;
@@ -28,8 +32,6 @@ namespace TheatricalPlayersRefactoringKata.Services
             statement.TheaterCompany = invoice.Customer;
 
             var totalAmount = 0;
-
-            statement.Lines = new();
 
             foreach (var perf in invoice.Performances)
             {
@@ -65,7 +67,7 @@ namespace TheatricalPlayersRefactoringKata.Services
             return statement;
         }
 
-        private static int ComedyCalculation(Performance perf, int thisAmount)
+        public static int ComedyCalculation(Performance perf, int thisAmount)
         {
             if (perf.Audience > COMEDY_AUDIENCE_THRESHOLD)
             {
@@ -75,7 +77,7 @@ namespace TheatricalPlayersRefactoringKata.Services
             return thisAmount;
         }
 
-        private static int TragedyCalculation(Performance perf, int thisAmount)
+        public static int TragedyCalculation(Performance perf, int thisAmount)
         {
             if (perf.Audience > TRAGEDY_AUDIENCE_THRESHOLD)
             {
@@ -85,7 +87,7 @@ namespace TheatricalPlayersRefactoringKata.Services
             return thisAmount;
         }
 
-        private static int EarnedCredits(Performance perf, Play play)
+        public static int EarnedCredits(Performance perf, Play play)
         {
             int credits = Math.Max(perf.Audience - AUDIENCE_CREDIT_THRESHOLD, 0);
 
