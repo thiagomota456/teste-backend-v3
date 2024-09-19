@@ -1,0 +1,43 @@
+﻿{
+  "TheaterCompany": "BigCo",
+  "Lines": [
+    {
+      "Name": "Hamlet",
+      "Value": 650.0,
+      "Seats": 55,
+      "EarnedCredits": 25
+    },
+    {
+      "Name": "As You Like It",
+      "Value": 547.0,
+      "Seats": 35,
+      "EarnedCredits": 12
+    },
+    {
+      "Name": "Othello",
+      "Value": 456.0,
+      "Seats": 40,
+      "EarnedCredits": 10
+    },
+    {
+      "Name": "Henry V",
+      "Value": 705.4,
+      "Seats": 20,
+      "EarnedCredits": 0
+    },
+    {
+      "Name": "King John",
+      "Value": 931.6,
+      "Seats": 39,
+      "EarnedCredits": 9
+    },
+    {
+      "Name": "Henry V",
+      "Value": 705.4,
+      "Seats": 20,
+      "EarnedCredits": 0
+    }
+  ],
+  "Amount": 3995.4,
+  "Credits": 56
+}
