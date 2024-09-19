@@ -1,8 +1,11 @@
 using System;
 using System.Collections.Generic;
+using System.Globalization;
+using System.Runtime.CompilerServices;
 using ApprovalTests;
 using ApprovalTests.Reporters;
 using Xunit;
+using Xunit.Abstractions;
 
 namespace TheatricalPlayersRefactoringKata.Tests;
 
@@ -29,11 +32,11 @@ public class StatementPrinterTests
             }
         );
 
-        StatementPrinter statementPrinter = new StatementPrinter();
-        var result = statementPrinter.Print(invoice, plays);
+        StatementPrinter statementPrinter = new();
+        string result = statementPrinter.Print(invoice, plays, new CultureInfo("en-US"));
 
         Approvals.Verify(result);
-    }
+     }
 
     //[Fact]
     //[UseReporter(typeof(DiffReporter))]

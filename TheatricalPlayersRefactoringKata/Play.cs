@@ -2,10 +2,6 @@ namespace TheatricalPlayersRefactoringKata;
 
 public class Play
 {
-    private string _name;
-    private int _lines;
-    private string _type;
-
     public string Name { get; set; }
     public int Lines { get; set; }
     public PlayType Type { get; set; }
