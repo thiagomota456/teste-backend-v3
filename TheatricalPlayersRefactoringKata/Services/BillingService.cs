@@ -20,10 +20,14 @@ namespace TheatricalPlayersRefactoringKata.Services
         private const int AUDIENCE_CREDIT_THRESHOLD = 30;
         private const int COMEDY_BONUS_DIVISOR = 5;
 
-        public void calculate(Invoice invoice, Dictionary<string, Play> plays)
+        public Statement Calculate(Invoice invoice, Dictionary<string, Play> plays)
         {
+            Statement statement = new();
+
             var totalAmount = 0;
             var volumeCredits = 0;
+
+            statement.Lines = new();
 
             foreach (var perf in invoice.Performances)
             {
@@ -47,12 +51,19 @@ namespace TheatricalPlayersRefactoringKata.Services
                         {
                             thisAmount += 10000 + 500 * (perf.Audience - COMEDY_AUDIENCE_THRESHOLD);
                         }
+                        thisAmount += 300 * perf.Audience;
                         volumeCredits += (int)Math.Floor((decimal)perf.Audience / COMEDY_BONUS_DIVISOR);
                     break;
 
                 }
 
+                statement.Lines.Add(new Line(play.Name, thisAmount / 100, perf.Audience));
+                totalAmount += thisAmount;
             }
+
+            statement.Amount = Convert.ToDecimal(totalAmount / 100);
+            statement.Credits = volumeCredits;
+            return statement;
         }
     }
 }

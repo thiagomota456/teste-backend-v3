@@ -4,6 +4,7 @@ using System.Globalization;
 using System.Runtime.CompilerServices;
 using ApprovalTests;
 using ApprovalTests.Reporters;
+using TheatricalPlayersRefactoringKata.Services;
 using Xunit;
 using Xunit.Abstractions;
 
@@ -31,10 +32,10 @@ public class StatementPrinterTests
                 new("othello", 40),
             }
         );
-
+        BillingService billingService = new BillingService();
+        var re = billingService.Calculate(invoice, plays);
         StatementPrinter statementPrinter = new();
         string result = statementPrinter.Print(invoice, plays, new CultureInfo("en-US"));
-
         Approvals.Verify(result);
      }
 

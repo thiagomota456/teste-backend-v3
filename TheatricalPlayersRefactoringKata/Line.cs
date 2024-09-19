@@ -11,5 +11,12 @@ namespace TheatricalPlayersRefactoringKata
         public string Name;
         public decimal Value;
         public int Seats;
+
+        public Line(string name, decimal value, int seats)
+        {
+            this.Name = name;
+            this.Value = value;
+            this.Seats = seats;
+        }
     }
 }
