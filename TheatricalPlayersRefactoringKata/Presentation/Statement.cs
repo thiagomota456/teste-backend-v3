@@ -4,12 +4,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace TheatricalPlayersRefactoringKata
+namespace TheatricalPlayersRefactoringKata.Presentation
 {
     public class Statement
     {
-        public Statement(string theaterCompany) { 
-            this.TheaterCompany = theaterCompany;
+        public Statement(string theaterCompany)
+        {
+            TheaterCompany = theaterCompany;
         }
 
         public Statement() { }

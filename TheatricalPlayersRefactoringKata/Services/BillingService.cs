@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using TheatricalPlayersRefactoringKata.Domain;
+using TheatricalPlayersRefactoringKata.Presentation;
 
 namespace TheatricalPlayersRefactoringKata.Services
 {
@@ -20,9 +22,10 @@ namespace TheatricalPlayersRefactoringKata.Services
         private const int AUDIENCE_CREDIT_THRESHOLD = 30;
         private const int COMEDY_BONUS_DIVISOR = 5;
 
-        public Statement Calculate(Invoice invoice, Dictionary<string, Play> plays)
+        public static Statement Calculate(Invoice invoice, Dictionary<string, Play> plays)
         {
             Statement statement = new();
+            statement.TheaterCompany = invoice.Customer;
 
             var totalAmount = 0;
             var volumeCredits = 0;
@@ -55,6 +58,9 @@ namespace TheatricalPlayersRefactoringKata.Services
                         volumeCredits += (int)Math.Floor((decimal)perf.Audience / COMEDY_BONUS_DIVISOR);
                     break;
 
+                    default:
+                        throw new Exception("unknown type: " + play.Type.ToString());
+
                 }
 
                 statement.Lines.Add(new Line(play.Name, thisAmount / 100, perf.Audience));
@@ -63,6 +69,7 @@ namespace TheatricalPlayersRefactoringKata.Services
 
             statement.Amount = Convert.ToDecimal(totalAmount / 100);
             statement.Credits = volumeCredits;
+
             return statement;
         }
     }
