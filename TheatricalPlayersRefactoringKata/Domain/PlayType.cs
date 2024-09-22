@@ -8,8 +8,8 @@ namespace TheatricalPlayersRefactoringKata.Domain
 {
     public enum PlayType
     {
-        Tragedy,
-        Comedy,
-        Historical
+        Tragedy = 0,
+        Comedy = 1,
+        Historical = 2,
     }
 }

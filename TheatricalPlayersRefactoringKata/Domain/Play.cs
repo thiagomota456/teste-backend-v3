@@ -2,9 +2,12 @@ namespace TheatricalPlayersRefactoringKata.Domain;
 
 public class Play
 {
+    public int Id { get; set; }
     public string Name { get; set; }
     public int Lines { get; set; }
     public PlayType Type { get; set; }
+
+    public Play() { }
 
     public Play(string name, int lines, PlayType type)
     {
