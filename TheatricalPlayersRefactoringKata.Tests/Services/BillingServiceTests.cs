@@ -17,7 +17,7 @@ namespace TheatricalPlayersRefactoringKata.Tests.Services
     public class BillingServiceTests
     {
         Play playTragedy = new Play("Hamlet", 4024, PlayType.Tragedy);
-        Performance performanceTragedy = new Performance("hamlet", 55);
+        Performance performanceTragedy = new Performance(1, 55);
         int thisAmountTragedy = 4000 * 10;
 
 
@@ -40,7 +40,7 @@ namespace TheatricalPlayersRefactoringKata.Tests.Services
         //Teste Comedy
 
         Play playComedy = new Play("As You Like It", 2670, PlayType.Comedy);
-        Performance performanceComedy = new Performance("as-like", 35);
+        Performance performanceComedy = new Performance(2, 35);
         int thisAmountComedy = 2670 * 10;
         
         [Fact]
@@ -60,7 +60,7 @@ namespace TheatricalPlayersRefactoringKata.Tests.Services
         //Historical
 
         Play playHistorical = new Play("Henry V", 3227, PlayType.Historical);
-        Performance performanceHistorical = new Performance("henry-v", 20);
+        Performance performanceHistorical = new Performance(4, 20);
         int thisAmountHistorical = 3227 * 10;
 
         [Fact]
@@ -81,24 +81,24 @@ namespace TheatricalPlayersRefactoringKata.Tests.Services
         [Fact]
         public void TestClassBillingService()
         {
-            var plays = new Dictionary<string, Play>();
-            plays.Add("hamlet", new Play("Hamlet", 4024, PlayType.Tragedy));
-            plays.Add("as-like", new Play("As You Like It", 2670, PlayType.Comedy));
-            plays.Add("othello", new Play("Othello", 3560, PlayType.Tragedy));
-            plays.Add("henry-v", new Play("Henry V", 3227, PlayType.Historical));
-            plays.Add("john", new Play("King John", 2648, PlayType.Historical));
-            plays.Add("richard-iii", new Play("Richard III", 3718, PlayType.Historical));
+            var plays = new Dictionary<int, Play>();
+            plays.Add(1, new Play("Hamlet", 4024, PlayType.Tragedy));
+            plays.Add(2, new Play("As You Like It", 2670, PlayType.Comedy));
+            plays.Add(3, new Play("Othello", 3560, PlayType.Tragedy));
+            plays.Add(4, new Play("Henry V", 3227, PlayType.Historical));
+            plays.Add(5, new Play("King John", 2648, PlayType.Historical));
+            plays.Add(6, new Play("Richard III", 3718, PlayType.Historical));
 
             Invoice invoice = new Invoice(
                 "BigCo",
                 new List<Performance>
                 {
-                    new Performance("hamlet", 55),
-                    new Performance("as-like", 35),
-                    new Performance("othello", 40),
-                    new Performance("henry-v", 20),
-                    new Performance("john", 39),
-                    new Performance("henry-v", 20)
+                new Performance(1, 55),
+                new Performance(2, 35),
+                new Performance(3, 40),
+                new Performance(4, 20),
+                new Performance(5, 39),
+                new Performance(4, 20)
                 }
             );
 

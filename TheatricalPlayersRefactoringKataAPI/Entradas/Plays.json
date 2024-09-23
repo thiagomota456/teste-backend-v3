@@ -1,0 +1,32 @@
+[
+  {
+    "name": "Hamlet",
+    "lines": 4024,
+    "type": 1
+  },
+  
+    "name": "As You Like It",
+    "lines": 2670,
+    "type": 2
+  },
+  {
+    "name": "Othello",
+    "lines": 3560,
+    "type": 1
+  },
+  {
+    "name": "Henry V",
+    "lines": 3227,
+    "type": 3
+  },
+  {
+    "name": "King John",
+    "lines": 2648,
+    "type": 3
+  },
+  {
+    "name": "Richard III",
+    "lines": 3718,
+    "type": 3
+  }
+]

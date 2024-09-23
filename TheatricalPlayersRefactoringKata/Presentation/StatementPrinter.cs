@@ -13,17 +13,17 @@ namespace TheatricalPlayersRefactoringKata.Presentation;
 public class StatementPrinter
 {
     public Invoice InvoceToCalculate { get; set; }
-    public Dictionary<string, Play> Plays { get; set; }
+    public Dictionary<int, Play> Plays { get; set; }
     public CultureInfo CultureInfo { get; set; }
 
-    public StatementPrinter(Invoice invoceToCalculate, Dictionary<string, Play> plays, CultureInfo cultureInfo)
+    public StatementPrinter(Invoice invoceToCalculate, Dictionary<int, Play> plays, CultureInfo cultureInfo)
     {
         InvoceToCalculate = invoceToCalculate;
         Plays = plays;
         CultureInfo = cultureInfo;
     }
 
-    public StatementPrinter(Invoice invoceToCalculate, Dictionary<string, Play> plays)
+    public StatementPrinter(Invoice invoceToCalculate, Dictionary<int, Play> plays)
     {
         InvoceToCalculate = invoceToCalculate;
         Plays = plays;

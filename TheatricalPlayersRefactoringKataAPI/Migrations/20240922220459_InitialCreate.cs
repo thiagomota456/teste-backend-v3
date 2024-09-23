@@ -5,7 +5,7 @@
 namespace TheatricalPlayersRefactoringKataAPI.Migrations
 {
     /// <inheritdoc />
-    public partial class Initial : Migration
+    public partial class InitialCreate : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -44,7 +44,7 @@ namespace TheatricalPlayersRefactoringKataAPI.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    PlayId = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    PlayId = table.Column<int>(type: "int", nullable: false),
                     Audience = table.Column<int>(type: "int", nullable: false),
                     InvoiceId = table.Column<int>(type: "int", nullable: true)
                 },

@@ -52,8 +52,8 @@ namespace TheatricalPlayersRefactoringKataAPI.Migrations
                     b.Property<int?>("InvoiceId")
                         .HasColumnType("int");
 
-                    b.Property<string>("PlayId")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<int>("PlayId")
+                        .HasColumnType("int");
 
                     b.HasKey("Id");
 

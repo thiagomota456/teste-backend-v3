@@ -12,8 +12,8 @@ using TheatricalPlayersRefactoringKataAPI.Data;
 namespace TheatricalPlayersRefactoringKataAPI.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20240922011056_Initial")]
-    partial class Initial
+    [Migration("20240922220459_InitialCreate")]
+    partial class InitialCreate
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -55,8 +55,8 @@ namespace TheatricalPlayersRefactoringKataAPI.Migrations
                     b.Property<int?>("InvoiceId")
                         .HasColumnType("int");
 
-                    b.Property<string>("PlayId")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<int>("PlayId")
+                        .HasColumnType("int");
 
                     b.HasKey("Id");
 

@@ -21,20 +21,20 @@ public class StatementPrinterTests
     [UseReporter(typeof(DiffReporter))]
     public void TestStatementExampleLegacy()
     {
-        var plays = new Dictionary<string, Play>
+        var plays = new Dictionary<int, Play>
         {
-            { "hamlet", new Play("Hamlet", 4024, PlayType.Tragedy) },
-            { "as-like", new Play("As You Like It", 2670, PlayType.Comedy) },
-            { "othello", new Play("Othello", 3560, PlayType.Tragedy) }
+            { 1, new Play("Hamlet", 4024, PlayType.Tragedy) },
+            { 2, new Play("As You Like It", 2670, PlayType.Comedy) },
+            { 3, new Play("Othello", 3560, PlayType.Tragedy) }
         };
 
         Invoice invoice = new(
             "BigCo",
             new List<Performance>
             {
-                new("hamlet", 55),
-                new("as-like", 35),
-                new("othello", 40),
+                new(1, 55),
+                new(2, 35),
+                new(3, 40),
             }
         );
         StatementPrinter statementPrinter = new(invoice, plays);
@@ -46,24 +46,24 @@ public class StatementPrinterTests
     [UseReporter(typeof(DiffReporter))]
     public void TestTextStatementExample()
     {
-        var plays = new Dictionary<string, Play>();
-        plays.Add("hamlet", new Play("Hamlet", 4024, PlayType.Tragedy));
-        plays.Add("as-like", new Play("As You Like It", 2670, PlayType.Comedy));
-        plays.Add("othello", new Play("Othello", 3560, PlayType.Tragedy));
-        plays.Add("henry-v", new Play("Henry V", 3227, PlayType.Historical));
-        plays.Add("john", new Play("King John", 2648, PlayType.Historical));
-        plays.Add("richard-iii", new Play("Richard III", 3718, PlayType.Historical));
+        var plays = new Dictionary<int, Play>();
+        plays.Add(1, new Play("Hamlet", 4024, PlayType.Tragedy));
+        plays.Add(2, new Play("As You Like It", 2670, PlayType.Comedy));
+        plays.Add(3, new Play("Othello", 3560, PlayType.Tragedy));
+        plays.Add(4, new Play("Henry V", 3227, PlayType.Historical));
+        plays.Add(5, new Play("King John", 2648, PlayType.Historical));
+        plays.Add(6, new Play("Richard III", 3718, PlayType.Historical));
 
         Invoice invoice = new Invoice(
             "BigCo",
             new List<Performance>
             {
-                new Performance("hamlet", 55),
-                new Performance("as-like", 35),
-                new Performance("othello", 40),
-                new Performance("henry-v", 20),
-                new Performance("john", 39),
-                new Performance("henry-v", 20)
+                new Performance(1, 55),
+                new Performance(2, 35),
+                new Performance(3, 40),
+                new Performance(4, 20),
+                new Performance(5, 39),
+                new Performance(4, 20)
             }
         );
 
@@ -76,24 +76,24 @@ public class StatementPrinterTests
     [UseReporter(typeof(DiffReporter))]
     public void TestXmlStatementExample()
     {
-        var plays = new Dictionary<string, Play>();
-        plays.Add("hamlet", new Play("Hamlet", 4024, PlayType.Tragedy));
-        plays.Add("as-like", new Play("As You Like It", 2670, PlayType.Comedy));
-        plays.Add("othello", new Play("Othello", 3560, PlayType.Tragedy));
-        plays.Add("henry-v", new Play("Henry V", 3227, PlayType.Historical));
-        plays.Add("john", new Play("King John", 2648, PlayType.Historical));
-        plays.Add("richard-iii", new Play("Richard III", 3718, PlayType.Historical));
+        var plays = new Dictionary<int, Play>();
+        plays.Add(1, new Play("Hamlet", 4024, PlayType.Tragedy));
+        plays.Add(2, new Play("As You Like It", 2670, PlayType.Comedy));
+        plays.Add(3, new Play("Othello", 3560, PlayType.Tragedy));
+        plays.Add(4, new Play("Henry V", 3227, PlayType.Historical));
+        plays.Add(5, new Play("King John", 2648, PlayType.Historical));
+        plays.Add(6, new Play("Richard III", 3718, PlayType.Historical));
 
         Invoice invoice = new Invoice(
             "BigCo",
             new List<Performance>
             {
-                new Performance("hamlet", 55),
-                new Performance("as-like", 35),
-                new Performance("othello", 40),
-                new Performance("henry-v", 20),
-                new Performance("john", 39),
-                new Performance("henry-v", 20)
+                new Performance(1, 55),
+                new Performance(2, 35),
+                new Performance(3, 40),
+                new Performance(4, 20),
+                new Performance(5, 39),
+                new Performance(4, 20)
             }
         );
 
@@ -106,24 +106,24 @@ public class StatementPrinterTests
     [UseReporter(typeof(DiffReporter))]
     public void TestJsonStatementExample()
     {
-        var plays = new Dictionary<string, Play>();
-        plays.Add("hamlet", new Play("Hamlet", 4024, PlayType.Tragedy));
-        plays.Add("as-like", new Play("As You Like It", 2670, PlayType.Comedy));
-        plays.Add("othello", new Play("Othello", 3560, PlayType.Tragedy));
-        plays.Add("henry-v", new Play("Henry V", 3227, PlayType.Historical));
-        plays.Add("john", new Play("King John", 2648, PlayType.Historical));
-        plays.Add("richard-iii", new Play("Richard III", 3718, PlayType.Historical));
+        var plays = new Dictionary<int, Play>();
+        plays.Add(1, new Play("Hamlet", 4024, PlayType.Tragedy));
+        plays.Add(2, new Play("As You Like It", 2670, PlayType.Comedy));
+        plays.Add(3, new Play("Othello", 3560, PlayType.Tragedy));
+        plays.Add(4, new Play("Henry V", 3227, PlayType.Historical));
+        plays.Add(5, new Play("King John", 2648, PlayType.Historical));
+        plays.Add(6, new Play("Richard III", 3718, PlayType.Historical));
 
         Invoice invoice = new Invoice(
             "BigCo",
             new List<Performance>
             {
-                new Performance("hamlet", 55),
-                new Performance("as-like", 35),
-                new Performance("othello", 40),
-                new Performance("henry-v", 20),
-                new Performance("john", 39),
-                new Performance("henry-v", 20)
+                new Performance(1, 55),
+                new Performance(2, 35),
+                new Performance(3, 40),
+                new Performance(4, 20),
+                new Performance(5, 39),
+                new Performance(4, 20)
             }
         );
 

@@ -26,7 +26,7 @@ namespace TheatricalPlayersRefactoringKata.Services
         private const int AUDIENCE_CREDIT_THRESHOLD = 30;
         private const int COMEDY_BONUS_DIVISOR = 5;
 
-        public static Statement Calculate(Invoice invoice, Dictionary<string, Play> plays)
+        public static Statement Calculate(Invoice invoice, Dictionary<int, Play>plays)
         {
             Statement statement = new();
             statement.TheaterCompany = invoice.Customer;
