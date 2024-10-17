@@ -1,7 +1,5 @@
 # Teste Backend
 
-![Aiko](img/logo.png)
-
 ## Apresentação e estado atual da aplicação
 
 Essa aplicação é usada por uma companhia de teatro para gerar extratos
